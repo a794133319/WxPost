@@ -71,7 +71,6 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     month = localtime().tm_mon
     day = localtime().tm_mday
     today = datetime.date(datetime(year=year, month=month, day=day))
-    love_words = findLoveWord()
 
     week = week_list[today.weekday()]
 
@@ -132,10 +131,6 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "birthday": {
                     "value": birth_day,
                     "color": "#FF8000"
-                },
-                "love_word": {
-                    "value": love_word,
-                    "color": "#FFE4E1"
                 }
             }
         }
