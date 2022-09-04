@@ -39,7 +39,7 @@ def findLoveWord():
 # 早安心语
 def getzaoan():
     url = 'http://api.tianapi.com/zaoan/index?key='
-    resp = requests.get(url + config.tianxing_key)
+    resp = get(url + config.tianxing_key)
     if resp.status_code == 200:
         data = resp.json()
         return data['newslist'][0]['content']
@@ -50,7 +50,7 @@ def getzaoan():
 # 晚安心语
 def getwanan():
     url = 'http://api.tianapi.com/wanan/index?key='
-    resp = requests.get(url + config.tianxing_key)
+    resp = get(url + config.tianxing_key)
     if resp.status_code == 200:
         data = resp.json()
         return data['newslist'][0]['content']
@@ -61,7 +61,7 @@ def getwanan():
 # 励志古言
 def getlzmy():
     url = 'http://api.tianapi.com/lzmy/index?key='
-    resp = requests.get(url + config.tianxing_key)
+    resp = get(url + config.tianxing_key)
     if resp.status_code == 200:
         data = resp.json()
         return data['newslist'][0]
@@ -72,7 +72,7 @@ def getlzmy():
 # 彩虹屁
 def getcaihongpi():
     url = 'http://api.tianapi.com/caihongpi/index?key='
-    resp = requests.get(url + config.tianxing_key)
+    resp = get(url + config.tianxing_key)
     if resp.status_code == 200:
         data = resp.json()
         return data['newslist'][0]['content']
