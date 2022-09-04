@@ -180,7 +180,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                     "color": "#87CEEB"
                 },
                 "birthday": {
-                    "value": birthady,
+                    "value": birthday,
                     "color": "#FF8000"
                 },
                 "zaoan": {
