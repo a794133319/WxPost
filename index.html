@@ -2,11 +2,22 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <title>狗比犯错记录</title>
 </head>
 <body>
-  <ul>
-    <li>不理我</li>
-  </ul>
+  <el-container>
+    <el-main>
+    
+      <el-descriptions class="margin-top" title="带边框列表" :column="1" :size="size" border>
+      <el-descriptions-item label="犯错内容">不理我</el-descriptions-item>
+        <el-descriptions-item label="犯错时间">2022-09-04</el-descriptions-item>
+        <el-descriptions-item label="犯错等级">
+        <el-tag type="danger">危险</el-tag>
+        </el-descriptions-item>
+      </el-descriptions>
+    
+    </el-main>
+  </el-container>
 </body>
 </html>
