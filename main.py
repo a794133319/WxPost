@@ -64,7 +64,7 @@ def getlzmy():
     resp = get(url + config.tianxing_key)
     if resp.status_code == 200:
         data = resp.json()
-        return data['newslist'][0]
+        return data['newslist'][0]['saying']
     else:
         print('请求失败')
 
@@ -157,7 +157,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "city": {
                     "value": city_name,
-                    "color": "#808A87"
+                    "color": "#1874CD"
                 },
                 "weather": {
                     "value": weather,
@@ -181,15 +181,15 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "zaoan": {
                     "value": zaoan,
-                    "color": "#FF8000"
+                    "color": "#00ffff"
                 },
                 "caihong": {
                     "value": caihong,
-                    "color": "#FF8000"
+                    "color": "#FF83FA"
                 },
                 "lizhi": {
                     "value": lizhi,
-                    "color": "#FF8000"
+                    "color": "#ff33ff"
                 }
             }
         }
