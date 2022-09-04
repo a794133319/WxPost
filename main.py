@@ -106,8 +106,8 @@ def get_weather(province, city):
     tempn = weatherinfo["tempn"]
     return weather, temp, tempn
 
-# 犯错记录
-def getError():
+# # 犯错记录
+# def getError():
     
 
 
