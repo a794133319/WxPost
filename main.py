@@ -106,6 +106,10 @@ def get_weather(province, city):
     tempn = weatherinfo["tempn"]
     return weather, temp, tempn
 
+# 犯错记录
+def getError():
+    
+
 
 def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
@@ -131,17 +135,16 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     # 获取生日的月和日
     birthday_month = int(config.birthday.split("-")[1])
     birthday_day = int(config.birthday.split("-")[2])
-    # 今年生日
-    year_date = date(year, birthday_month, birthday_day)
-    # 计算生日年份，如果还没过，按当年减，如果过了需要+1
-    if today > year_date:
-        birth_date = date((year + 1), birthday_month, birthday_day)
-        birth_day = str(birth_date.__sub__(today)).split(" ")[0]
-    elif today == year_date:
-        birth_day = 0
+    
+    #计算生日
+    current_year = datetime.date(ZhDate(year,birthday_month,birthday_day).to_datetime())
+    today = datetime.date(datetime(year=year, month=month, day=day))
+    difference = int(str(current_year.__sub__(today)).split(" ")[0])
+    if difference > 0:
+        birthday = difference
     else:
-        birth_date = year_date
-        birth_day = str(birth_date.__sub__(today)).split(" ")[0]
+        birthday = datetime.date(ZhDate(year+1,birthday_month,birthday_day).to_datetime())
+        birthday = str(birthday.__sub__(today)).split(" ")[0]
 
     for i in range(len(to_user)):
         theuser=to_user[i]
