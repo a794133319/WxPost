@@ -6,9 +6,12 @@ app_secret = "e904091c8b94999c23b2fc34e46541a3"
 # 模板消息id
 template_id = "0rLkbyWgnm0O7nXB7p7WQ2pR8IefFyOF6gvOD__DfUk"
 # 接收公众号消息的微信号
+# 这是openid "oY8CK5ra80SyqnOvOCOl-9bKUO7M"
+user = ["oY8CK5oRnCSb5rg_1K_m67arldbk"]
 
-# 这是openid
-user = ["oY8CK5oRnCSb5rg_1K_m67arldbk","oY8CK5ra80SyqnOvOCOl-9bKUO7M"]
+# 天行数据
+tianxing_key = "2b1cce59a46509b9515b0abfda714c3e"
+
 
 # 信息配置
 # 所在省份
