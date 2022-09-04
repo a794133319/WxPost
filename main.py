@@ -36,7 +36,50 @@ def findLoveWord():
 
     return loveList[0]
 
+# 早安心语
+def getzaoan():
+    url = 'http://api.tianapi.com/zaoan/index?key='
+    resp = requests.get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['content']
+    else:
+        print('请求失败')
 
+
+# 晚安心语
+def getwanan():
+    url = 'http://api.tianapi.com/wanan/index?key='
+    resp = requests.get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['content']
+    else:
+        print('请求失败')
+
+
+# 励志古言
+def getlzmy():
+    url = 'http://api.tianapi.com/lzmy/index?key='
+    resp = requests.get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]
+    else:
+        print('请求失败')
+
+
+# 彩虹屁
+def getcaihongpi():
+    url = 'http://api.tianapi.com/caihongpi/index?key='
+    resp = requests.get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['content']
+    else:
+        print('请求失败')
+
+#获取天气信息
 def get_weather(province, city):
     # 城市id
     city_id = cityinfo.cityInfo[province][city]["AREAID"]
@@ -71,6 +114,10 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     month = localtime().tm_mon
     day = localtime().tm_mday
     today = datetime.date(datetime(year=year, month=month, day=day))
+    caihong = getcaihongpi()
+    lizhi = getlzmy()
+    wanan = getwanan()
+    zaoan = getzaoan()
 
     week = week_list[today.weekday()]
 
@@ -80,7 +127,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     love_day = int(config.love_date.split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
-    love_days = str(today.__sub__(love_date)).split(" ")[0]
+    love_days = str(today.__sub__(love_date)).split(" ")[0] + 1
     # 获取生日的月和日
     birthday_month = int(config.birthday.split("-")[1])
     birthday_day = int(config.birthday.split("-")[2])
@@ -130,6 +177,18 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "birthday": {
                     "value": birth_day,
+                    "color": "#FF8000"
+                },
+                "zaoan": {
+                    "value": zaoan,
+                    "color": "#FF8000"
+                },
+                "caihong": {
+                    "value": caihong,
+                    "color": "#FF8000"
+                },
+                "lizhi": {
+                    "value": lizhi,
                     "color": "#FF8000"
                 }
             }
