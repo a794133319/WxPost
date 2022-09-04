@@ -78,7 +78,6 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
 
     for i in range(len(to_user)):
-        theClass = classes[i][today.weekday()]
         theuser=to_user[i]
         data = {
             "touser": theuser,
