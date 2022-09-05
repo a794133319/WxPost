@@ -19,23 +19,7 @@ def get_access_token():
     # print(access_token)
     return access_token
 
-# 返回多条语录
-def findLoveWord():
-    url ="http://www.1juzi.com/new/150542.html"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE",
-    }
 
-    content = get(url, headers=headers, verify=False).content.decode("gb2312",errors="ignore")
-    soup = BeautifulSoup(content, 'html.parser')
-    contentDocument = soup.find(class_="content").find_all("p")[:50]
-    loveList=[];
-    for dom in contentDocument:
-        domString = dom.string
-        domString =  domString[domString.index("、")+1:]
-        loveList.append(domString)
-
-    return loveList[0]
 
 # 早安心语
 def getzaoan():
@@ -79,7 +63,48 @@ def getcaihongpi():
         return data['newslist'][0]['content']
     else:
         print('请求失败')
+        
+# 网易云
+def getwangyiyun():
+    url = 'http://api.tianapi.com/hotreview/index?key='
+    resp = get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['content']
+    else:
+        print('请求失败')
 
+# 情诗
+def getqingshi():
+    url = 'http://api.tianapi.com/qingshi/index?key='
+    resp = get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['content']
+    else:
+        print('请求失败')        
+        
+# 英语
+def getyingyu():
+    url = 'http://api.tianapi.com/everyday/index?key='
+    resp = get(url + config.tianxing_key)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]
+    else:
+        print('请求失败')   
+
+# 空气
+def getaqi():
+    url = 'http://api.tianapi.com/aqi/index?key='
+    resp = get(url + config.tianxing_key + '&area=' + config.city)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data['newslist'][0]['quality']
+    else:
+        print('请求失败')           
+        
+        
 #获取天气信息
 def get_weather(province, city):
     # 城市id
@@ -120,10 +145,15 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     day = localtime().tm_mday
     today = datetime.date(datetime(year=year, month=month, day=day))
     caihong = getcaihongpi()
-    lizhi = getlzmy()
+   # lizhi = getlzmy()
     wanan = getwanan()
     zaoan = getzaoan()
-
+    wangyiyun = getwangyiyun()
+    qingshi = getqingshi()
+    yingyu = getyingyu()
+    aqi = getaqi()
+    if  '污染' in aqi:
+        aqi = aqi + ',记得戴口罩哦!'
     week = week_list[today.weekday()]
 
     # 获取在一起的日子的日期格式
@@ -191,9 +221,25 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                     "value": caihong,
                     "color": "#FF83FA"
                 },
-                "lizhi": {
-                    "value": lizhi,
-                    "color": "#ff33ff"
+                "wangyiyun": {
+                    "value": wangyiyun,
+                    "color": "#FF83FA"
+                },
+                "qingshi": {
+                    "value": qingshi,
+                    "color": "#FF83FA"
+                },
+                "english_content": {
+                    "value": yingyu['content'],
+                    "color": "#FF83FA"
+                },
+                "english_note": {
+                    "value": yingyu['note'],
+                    "color": "#FF83FA"
+                },
+                "aqi": {
+                    "value": aqi,
+                    "color": "#FF83FA"
                 }
             }
         }
