@@ -151,6 +151,8 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     wangyiyun = getwangyiyun()
     qingshi = getqingshi()
     yingyu = getyingyu()
+    printf(yingyu['content'])
+     printf(yingyu['note'])
     aqi = getaqi()
     if  '污染' in aqi:
         aqi = aqi + ',记得戴口罩哦!'
