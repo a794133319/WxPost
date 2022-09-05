@@ -217,7 +217,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "zaoan": {
                     "value": zaoan,
-                    "color": "#00ffff"
+                    "color": "#9834eb"
                 },
                 "caihong": {
                     "value": caihong,
@@ -229,7 +229,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "qingshi": {
                     "value": qingshi,
-                    "color": "#FF83FA"
+                    "color": "#ed1a80"
                 },
                 "english_content": {
                     "value": yingyu['content'],
@@ -241,7 +241,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 },
                 "aqi": {
                     "value": aqi,
-                    "color": "#FF83FA"
+                    "color": "#1aaeed"
                 }
             }
         }
