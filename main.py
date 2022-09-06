@@ -145,7 +145,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     year = localtime().tm_year
     month = localtime().tm_mon
     day = localtime().tm_mday
-    today = datetime.date(datetime.fromtimestamp(int(time.time()), tz)))
+    today = datetime.date(datetime.fromtimestamp(int(time.time()), tz))
     caihong = getcaihongpi()
    # lizhi = getlzmy()
     wanan = getwanan()
