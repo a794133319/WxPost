@@ -163,7 +163,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     # 获取在一起的日子的日期格式
     love_year = int(config.love_date.split("-")[0])
     love_month = int(config.love_date.split("-")[1])
-    love_day = int(config.love_date.split("-")[2]) - 1
+    love_day = int(config.love_date.split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
     love_days = str(today.__sub__(love_date)).split(" ")[0]
@@ -176,10 +176,10 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     today = datetime.date(datetime(year=year, month=month, day=day))
     difference = int(str(current_year.__sub__(today)).split(" ")[0])
     if difference > 0:
-        birthday = difference - 1
+        birthday = difference
     else:
         birthday = datetime.date(ZhDate(year+1,birthday_month,birthday_day).to_datetime())
-        birthday = int(str(birthday.__sub__(today)).split(" ")[0]) - 1
+        birthday = int(str(birthday.__sub__(today)).split(" ")[0])
 
     for i in range(len(to_user)):
         theuser=to_user[i]
