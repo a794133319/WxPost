@@ -1,4 +1,5 @@
 from time import time, localtime
+import pytz as pytz
 import cityinfo
 import config
 from requests import get, post
@@ -138,12 +139,13 @@ def get_weather(province, city):
 
 
 def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature):
+    tz = pytz.timezone('Asia/Shanghai')  # 东八区
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     year = localtime().tm_year
     month = localtime().tm_mon
     day = localtime().tm_mday
-    today = datetime.date(datetime(year=year, month=month, day=day))
+    today = datetime.date(datetime.fromtimestamp(int(time.time()), tz)))
     caihong = getcaihongpi()
    # lizhi = getlzmy()
     wanan = getwanan()
