@@ -166,7 +166,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     love_day = int(config.love_date.split("-")[2])
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
-    love_days = str(today.__sub__(love_date)).split(" ")[0]
+    love_days = str(today.date().__sub__(love_date)).split(" ")[0]
     # 获取生日的月和日
     birthday_month = int(config.birthday.split("-")[1])
     birthday_day = int(config.birthday.split("-")[2])
