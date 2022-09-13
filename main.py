@@ -191,7 +191,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
             "topcolor": "#FF0000",
             "data": {
                 "date": {
-                    "value": "{} {}".format(today, week),
+                    "value": "{} {}".format(today[:9], week),
                     "color": "#00FFFF"
                 },
                 "city": {
