@@ -178,13 +178,12 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     
     #计算生日
     current_year = datetime.date(ZhDate(year,birthday_month,birthday_day).to_datetime())
-    today = datetime.date(datetime(year=year, month=month, day=day))
     difference = int(str(current_year.__sub__(today)).split(" ")[0])
     if difference > 0:
-        birthday = difference - 1
+        birthday = difference
     else:
         birthday = datetime.date(ZhDate(year+1,birthday_month,birthday_day).to_datetime())
-        birthday = int(str(birthday.__sub__(today)).split(" ")[0]) - 1
+        birthday = int(str(birthday.__sub__(today)).split(" ")[0])
 
     for i in range(len(to_user)):
         theuser=to_user[i]
